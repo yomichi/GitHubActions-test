@@ -1,0 +1,2 @@
+res=$(@CMAKE_BINARY_DIR@/src/hello)
+test "hello" = $res
