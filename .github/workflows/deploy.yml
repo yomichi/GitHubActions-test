@@ -52,7 +52,11 @@ jobs:
         GIT_EMAIL: "yomichi@tsg.jp"
       run: |
           cd ${GITHUB_WORKSPACE}
-          mv main/docs/_build/html/* "gh-pages/man/${{ env.GITHUB_REF_SLUG }}"
+          ls -l
+          ls -l gh-pages
+          ls -l gh-pages/man
+          rm -rf "gh-pages/man/${{ env.GITHUB_REF_SLUG }}"
+          cp -r main/docs/_build/html "gh-pages/man/${{ env.GITHUB_REF_SLUG }}"
           cd gh-pages
           git config --local user.name "${GIT_USER}"
           git config --local user.email "${GIT_EMAIL}"
