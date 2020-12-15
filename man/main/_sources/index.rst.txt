@@ -10,6 +10,7 @@ Welcome to GHAtest's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   foo
 
 
 Indices and tables
