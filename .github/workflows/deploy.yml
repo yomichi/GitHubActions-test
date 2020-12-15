@@ -3,7 +3,10 @@ name: deploy
 on:
   push:
     branches:
-    - main
+      - main
+      - develop
+      - '*-autodoc'
+    tags: '*'
 
 jobs:
   deploy:
@@ -56,12 +59,14 @@ jobs:
           ls -l
           ls -l gh-pages
           ls -l gh-pages/man
-          rm -rf "gh-pages/man/${{ env.GITHUB_REF_SLUG }}"
-          cp -r main/docs/_build/html "gh-pages/man/${{ env.GITHUB_REF_SLUG }}"
+          tagname="${{ env.GITHUB_REF_SLUG }}"
+          tagname=${tagname%-autodoc}
+          rm -rf "gh-pages/man/${tagname}"
+          cp -r main/docs/_build/html "gh-pages/man/${tagname}"
           cd gh-pages
           git config --local user.name "${GIT_USER}"
           git config --local user.email "${GIT_EMAIL}"
           git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
           git add man
-          git commit -m "auto rebuilding site"
+          git commit -m "Deploy docs via GitHub Actions"
           git push origin gh-pages
