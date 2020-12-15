@@ -68,5 +68,10 @@ jobs:
           git config --local user.email "${GIT_EMAIL}"
           git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
           git add man
-          git commit -m "Deploy docs via GitHub Actions"
-          git push origin gh-pages
+          ret=0
+          git commit -m "Deploy docs via GitHub Actions" || ret=$?
+          if [ $ret -eq 0 ]; then
+            git push origin gh-pages
+          else
+            echo "Nothing to deploy"
+          fi
