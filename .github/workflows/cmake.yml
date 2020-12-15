@@ -39,3 +39,5 @@ jobs:
         working-directory: ${{runner.workspace}}/build
         shell: bash
         run: ctest -V
+
+      - run: rm a
