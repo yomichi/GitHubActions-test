@@ -5,8 +5,8 @@ on:
     workflows: "CI"
     types: completed
     branches:
-      # - main
-      # - develop
+      - main
+      - develop
       - '*-autodoc'
     tags: '*'
 
@@ -58,13 +58,12 @@ jobs:
         GIT_EMAIL: "yomichi@tsg.jp"
       run: |
           cd ${GITHUB_WORKSPACE}
-          ls -l
-          ls -l gh-pages
-          ls -l gh-pages/man
           tagname="${{ env.GITHUB_REF_SLUG }}"
           tagname=${tagname%-autodoc}
           rm -rf "gh-pages/man/${tagname}"
-          cp -r main/docs/_build/html "gh-pages/man/${tagname}"
+          mkdir -p "gh-pages/man/${tagname}"
+          for LANG in ja en; do
+            cp -r main/docs/${LANG}/_build/html "gh-pages/man/${tagname}/${LANG}"
           cd gh-pages
           git config --local user.name "${GIT_USER}"
           git config --local user.email "${GIT_EMAIL}"
