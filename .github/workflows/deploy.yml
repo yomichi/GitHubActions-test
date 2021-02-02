@@ -44,7 +44,7 @@ jobs:
     - name: Build
       run: |
         cd ${GITHUB_WORKSPACE}/main
-        git remote set-url origin git@github.com:${GITHUB_REPOSITORY}.git
+        git tag
         tagname="${{ env.GITHUB_REF_SLUG }}"
         export tagname="${tagname%-autodoc}"
         for LANG in ja en; do
