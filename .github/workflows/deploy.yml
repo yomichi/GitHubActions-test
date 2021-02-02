@@ -42,8 +42,10 @@ jobs:
 
     - name: Build
       run: |
-        cd ${GITHUB_WORKSPACE}/main/docs
-        make html
+        for LANG in ja en; do
+          cd ${GITHUB_WORKSPACE}/main/docs/${LANG}
+          make html
+        done
 
     - name: Deploy Configuration
       run: |
@@ -64,6 +66,7 @@ jobs:
           mkdir -p "gh-pages/man/${tagname}"
           for LANG in ja en; do
             cp -r main/docs/${LANG}/_build/html "gh-pages/man/${tagname}/${LANG}"
+          done
           cd gh-pages
           git config --local user.name "${GIT_USER}"
           git config --local user.email "${GIT_EMAIL}"
