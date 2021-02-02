@@ -19,7 +19,7 @@
         {% endif %}
         <dd>
         {% if lang == current_lang %}<strong>{% endif %}
-          <a href="{{root_dir}}/../{{lang}}/{{pathto(pagename, 0, ".")}}">{{ lang }}</a>
+          <a href="{{root_dir}}../{{lang}}/{{pathto(pagename, 0, ".")}}">{{ lang }}</a>
         {% if lang == current_lang %}</strong>{% endif %}
         </dd>
       {% endfor %}
@@ -33,7 +33,7 @@
         {% endif %}
         <dd>
         {% if name == current_version %}<strong>{% endif %}
-          <a href="{{root_dir}}/../../{{name}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ name }}</a>
+          <a href="{{root_dir}}../../{{name}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ name }}</a>
         {% if name == current_version %}</strong>{% endif %}
         </dd>
       {% endfor %}
@@ -47,7 +47,7 @@
         {% endif %}
         <dd>
         {% if name == current_version %}<strong>{% endif %}
-        <a href="{{root_dir}}/../../{{name}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ name }}</a>
+        <a href="{{root_dir}}../../{{name}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ name }}</a>
         {% if name == current_version %}</strong>{% endif %}
         </dd>
       {% endfor %}
