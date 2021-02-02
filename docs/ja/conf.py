@@ -75,6 +75,7 @@ html_context["current_version"] = current_version
 
 html_context["branches"] = ["develop", "main"]
 html_context["tags"] = []
+exclude_tags = ["tag-1", "tag-2"]
 
 try:
     import git
@@ -82,6 +83,7 @@ try:
     tags = list(map(str, repo.tags))
     tags.sort(reverse=True)
     for tag in tags:
-        html_context["tags"].append(tag)
+        if tag not in exclude_tags:
+            html_context["tags"].append(tag)
 except:
     pass
