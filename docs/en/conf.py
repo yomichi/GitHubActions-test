@@ -77,8 +77,11 @@ html_context["tags"] = []
 
 try:
     import git
+    print("hoge")
     repo = git.Repo(search_parent_directories=True)
+    print("fuga")
     tags = list(map(str, repo.tags))
+    print(tags)
     tags.sort(reverse=True)
     for tag in tags:
         html_context["tags"].append(tag)
