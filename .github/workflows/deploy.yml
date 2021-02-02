@@ -67,6 +67,7 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           tagname="${{ env.GITHUB_REF_SLUG }}"
           tagname=${tagname%-autodoc}
+          echo $tagname
           rm -rf "gh-pages/man/${tagname}"
           mkdir -p "gh-pages/man/${tagname}"
           for LANG in ja en; do
