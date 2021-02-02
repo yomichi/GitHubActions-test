@@ -11,6 +11,7 @@ Welcome to GHAtest's documentation!
    :caption: Contents:
 
    foo
+   subdir/index
 
 
 Indices and tables
