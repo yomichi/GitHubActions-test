@@ -12,15 +12,29 @@
     <dl>
       <dt>{{ _('Languages') }}</dt>
       {% for lang in languages %}
-      <dd><a href="../{{lang}}/{{pathto(pagename, 0, ".")}}">{{ lang }}</a></dd>
+      <dd>
+      {% if lang == current_lang %}<strong>{% endif %}
+      <a href="../{{lang}}/{{pathto(pagename, 0, ".")}}">{{ lang }}</a>
+      {% if lang == current_lang %}</strong>{% endif %}
+      </dd>
       {% endfor %}
 
-      <dt>{{ _('Versions') }}</dt>
-      {% for slug, ver in versions %}
-      <dd><a href="../../{{ver}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ slug }}</a></dd>
+      <dt>{{ _('Branches') }}</dt>
+      {% for name in branches %}
+      <dd>
+      {% if name == current_version %}<strong>{% endif %}
+      <a href="../../{{name}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ name }}</a>
+      {% if name == current_version %}</strong>{% endif %}
+      </dd>
       {% endfor %}
-      {% for slug, ver in versions %}
-      <dd><a href="../../{{ver}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ slug }}</a></dd>
+
+      <dt>{{ _('Tags') }}</dt>
+      {% for name in tags %}
+      <dd>
+      {% if name == current_version %}<strong>{% endif %}
+      <a href="../../{{name}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ name }}</a>
+      {% if name == current_version %}</strong>{% endif %}
+      </dd>
       {% endfor %}
 
     </dl>
