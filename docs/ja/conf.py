@@ -87,3 +87,11 @@ try:
             html_context["tags"].append(tag)
 except:
     pass
+
+html_context["ENABLE_VERSIONING"] = "false"
+if os.environ.get("CI", "false") == "true":
+    html_context["ENABLE_VERSIONING"] = "true"
+if os.environ.get("ENABLE_VERSIONING", "false") == "true":
+    html_context["ENABLE_VERSIONING"] = "true"
+
+print(html_context["ENABLE_VERSIONING"])

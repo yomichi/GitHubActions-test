@@ -2,6 +2,7 @@
 {# https://github.com/readthedocs/sphinx_rtd_theme #}
 
 {# Add rst-badge after rst-versions for small badge style. #}
+{% if ENABLE_VERSIONING == "true" %}
 <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Read the Docs</span>
@@ -43,3 +44,4 @@
     </dl>
   </div>
 </div>
+{% endif %} {# endif ENABLE_VERSIONING == "true" #}
