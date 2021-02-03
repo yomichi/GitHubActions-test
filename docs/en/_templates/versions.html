@@ -12,42 +12,30 @@
     <dl>
       <dt>{{ _('Languages') }}</dt>
       {% for lang in languages %}
-        {% if pathto(master_doc) != '#' %}
-          {% set root_dir = pathto(master_doc) | replace("index.html", "./") %}
-        {% else %}
-          {% set root_dir = "./" %}
-        {% endif %}
+        {% set root_dir = pathto("../../..", 1)%}
         <dd>
         {% if lang == current_lang %}<strong>{% endif %}
-          <a href="{{root_dir}}../{{lang}}/{{pathto(pagename, 0, ".")}}">{{ lang }}</a>
+          <a href="{{root_dir}}/{{current_version}}/{{lang}}/{{pathto(pagename, 0, ".")}}">{{ lang }}</a>
         {% if lang == current_lang %}</strong>{% endif %}
         </dd>
       {% endfor %}
 
       <dt>{{ _('Branches') }}</dt>
       {% for name in branches %}
-        {% if pathto(master_doc) != '#' %}
-          {% set root_dir = pathto(master_doc) | replace("index.html", "./") %}
-        {% else %}
-          {% set root_dir = "./" %}
-        {% endif %}
+        {% set root_dir = pathto("../../..", 1)%}
         <dd>
         {% if name == current_version %}<strong>{% endif %}
-          <a href="{{root_dir}}../../{{name}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ name }}</a>
+          <a href="{{root_dir}}/{{name}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ name }}</a>
         {% if name == current_version %}</strong>{% endif %}
         </dd>
       {% endfor %}
 
       <dt>{{ _('Tags') }}</dt>
       {% for name in tags %}
-        {% if pathto(master_doc) != '#' %}
-          {% set root_dir = pathto(master_doc) | replace("index.html", "./") %}
-        {% else %}
-          {% set root_dir = "./" %}
-        {% endif %}
+        {% set root_dir = pathto("../../..", 1)%}
         <dd>
         {% if name == current_version %}<strong>{% endif %}
-        <a href="{{root_dir}}../../{{name}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ name }}</a>
+        <a href="{{root_dir}}/{{name}}/{{current_lang}}/{{pathto(pagename, 0, ".")}}">{{ name }}</a>
         {% if name == current_version %}</strong>{% endif %}
         </dd>
       {% endfor %}
