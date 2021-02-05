@@ -41,18 +41,18 @@ jobs:
 
       - name: Print slug/short variables
         run: |
+          echo "Original variables"
+          echo " GITHUB_REPOSITORY - ${{env.REPOSITORY}}"
+          echo " GITHUB_REF - ${{env.GITHUB_REF}}"
           echo "Slug variables"
-          echo " - ${{ env.GITHUB_REF_SLUG }}"    
-          echo " - ${{ env.GITHUB_HEAD_REF_SLUG }}"
-          echo " - ${{ env.GITHUB_BASE_REF_SLUG }}"
-          echo " - ${{ env.GITHUB_REPOSITORY_SLUG }}"
-          # output e.g. : master feat-new-feature v1.0.0 product-1.0.0-rc.2 new-awesome-product
+          echo " GITHUB_REF_SLUG - ${{ env.GITHUB_REF_SLUG }}"    
+          echo " GITHUB_HEAD_REF_SLUG - ${{ env.GITHUB_HEAD_REF_SLUG }}"
+          echo " GITHUB_BASE_REF_SLUG - ${{ env.GITHUB_BASE_REF_SLUG }}"
+          echo " GITHUB_REPOSITORY_SLUG - ${{ env.GITHUB_REPOSITORY_SLUG }}"
           echo "Slug URL variables"
-          echo " - ${{ env.GITHUB_REF_SLUG_URL }}"
-          echo " - ${{ env.GITHUB_HEAD_REF_SLUG_URL }}"
-          echo " - ${{ env.GITHUB_BASE_REF_SLUG_URL }}"
-          echo " - ${{ env.GITHUB_REPOSITORY_SLUG_URL }}"
-          # output e.g. : master feat-new-feature v1-0-0 product-1-0-0-rc-2 new-awesome-product
+          echo " GITHUB_REF_SLUG_URL - ${{ env.GITHUB_REF_SLUG_URL }}"
+          echo " GITHUB_HEAD_REF_SLUG_URL - ${{ env.GITHUB_HEAD_REF_SLUG_URL }}"
+          echo " GITHUB_BASE_REF_SLUG_URL - ${{ env.GITHUB_BASE_REF_SLUG_URL }}"
+          echo " GITHUB_REPOSITYRO_SLUG_URL - ${{ env.GITHUB_REPOSITORY_SLUG_URL }}"
           echo "Short SHA variables"
-          echo " - ${{ env.GITHUB_SHA_SHORT }}"
-          # output e.g. : ffac537e
+          echo " GITHUB_SHA_SHORT - ${{ env.GITHUB_SHA_SHORT }}"
