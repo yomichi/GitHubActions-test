@@ -36,7 +36,7 @@ jobs:
 
     - name: Prepare LaTeX env
       run: |
-        sudo ap install \
+        sudo apt install \
           texlive-latex-recommended texlive-latex-extra \
           texlive-lang-japanese texlive-fonts-recommended texlive-fonts-extra
         kanji-config-updmap-sys ipaex
