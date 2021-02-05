@@ -36,6 +36,16 @@ jobs:
         shell: bash
         run: ctest -V
 
+      - name: Check tag or not
+        run: |
+          is_tag=NO
+          test $(echo ${GITHUB_REF:-"//"} | cut -d/ -f2) = "tags" && is_tag=YES
+          if [ $is_tag = "YES" ]; then
+          echo "This is tagged version"
+          else
+          echo "This is not tagged version"
+          fi
+
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v3.x
 
