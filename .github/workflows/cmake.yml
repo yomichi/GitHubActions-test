@@ -42,8 +42,8 @@ jobs:
       - name: Print slug/short variables
         run: |
           echo "Original variables"
-          echo " GITHUB_REPOSITORY - ${{env.REPOSITORY}}"
-          echo " GITHUB_REF - ${{env.GITHUB_REF}}"
+          echo " GITHUB_REPOSITORY - $GITHUB_REPOSITORY"
+          echo " GITHUB_REF - $GITHUB_REF"
           echo "Slug variables"
           echo " GITHUB_REF_SLUG - ${{ env.GITHUB_REF_SLUG }}"    
           echo " GITHUB_HEAD_REF_SLUG - ${{ env.GITHUB_HEAD_REF_SLUG }}"
