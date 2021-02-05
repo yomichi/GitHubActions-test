@@ -34,26 +34,14 @@ jobs:
       with:
         python-version: 3.7
 
-    - name: Print slug/short variables
+    - name: Prepare LaTeX env
       run: |
-        echo "Slug variables"
-        echo " - ${{ env.GITHUB_REF_SLUG }}"    
-        echo " - ${{ env.GITHUB_HEAD_REF_SLUG }}"
-        echo " - ${{ env.GITHUB_BASE_REF_SLUG }}"
-        echo " - ${{ env.GITHUB_REPOSITORY_SLUG }}"
-        # output e.g. : master feat-new-feature v1.0.0 product-1.0.0-rc.2 new-awesome-product
-        echo "Slug URL variables"
-        echo " - ${{ env.GITHUB_REF_SLUG_URL }}"
-        echo " - ${{ env.GITHUB_HEAD_REF_SLUG_URL }}"
-        echo " - ${{ env.GITHUB_BASE_REF_SLUG_URL }}"
-        echo " - ${{ env.GITHUB_REPOSITORY_SLUG_URL }}"
-        # output e.g. : master feat-new-feature v1-0-0 product-1-0-0-rc-2 new-awesome-product
-        echo "Short SHA variables"
-        echo " - ${{ env.GITHUB_SHA_SHORT }}"
-        # output e.g. : ffac537e
+        sudo ap install \
+          texlive-latex-recommended texlive-latex-extra \
+          texlive-lang-japanese texlive-fonts-recommended texlive-fonts-extra
+        kanji-config-updmap-sys ipaex
 
-
-    - name: Install dependencies
+    - name: Install python packages
       run: |
         python -m pip install --upgrade pip
         pip install sphinx sphinx-rtd-theme gitpython
@@ -68,6 +56,7 @@ jobs:
         for LANG in ja en; do
           cd ${GITHUB_WORKSPACE}/main/docs/${LANG}
           make html
+          make latexpdf
         done
 
     - name: Deploy Configuration
@@ -82,6 +71,8 @@ jobs:
         GIT_USER: "yomichi"
         GIT_EMAIL: "yomichi@tsg.jp"
       run: |
+          is_tag=NO
+          test "_$(echo ${GITHUB_REF:-'//'} | cut -d/ -f2)" = "_tags" && is_tag=YES
           cd ${GITHUB_WORKSPACE}
           tagname="${{ env.GITHUB_REF_SLUG }}"
           tagname=${tagname%-autodoc}
@@ -90,6 +81,9 @@ jobs:
           mkdir -p "gh-pages/man/${tagname}"
           for LANG in ja en; do
             cp -r main/docs/${LANG}/_build/html "gh-pages/man/${tagname}/${LANG}"
+            if [ $is_tag = "YES" ]; then
+              cp main/docs/${LANG}/_build/latex/ghatest.pdf "gh-pages/man/${tagname}/${LANG}"
+            fi
           done
           cd gh-pages
           git config --local user.name "${GIT_USER}"
