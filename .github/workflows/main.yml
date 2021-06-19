@@ -105,5 +105,10 @@ jobs:
           echo "This is Linux"
           export FOO=BAR
 
-      - name: env
-        run: echo $FOO
+      - name: if
+        run: |
+          if [ ${{ matrix.os }} = "macOS" ] ; then
+            echo macOS
+          else
+            echo Linux
+          fi
