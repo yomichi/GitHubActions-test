@@ -107,7 +107,7 @@ jobs:
 
       - name: if
         run: |
-          if [ ${{ matrix.os }} = "macOS" ] ; then
+          if [ ${{ runner.os }} = "macOS" ] ; then
             echo macOS
           else
             echo Linux
