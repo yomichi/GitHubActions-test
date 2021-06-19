@@ -94,8 +94,16 @@ jobs:
 
       - name: macOS
         if: ${{ runner.os == 'macOS' }}
-        run: echo "This is macOS"
+        run: |
+          echo "This is macOS"
+          export FOO=FOO
+
 
       - name: Linux
         if: ${{ runner.os == 'Linux' }}
-        run: echo "This is Linux"
+        run: |
+          echo "This is Linux"
+          export FOO=BAR
+
+      - name: env
+        run: echo $FOO
