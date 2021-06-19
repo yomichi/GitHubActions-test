@@ -3,10 +3,11 @@ name: deploy
 on:
   push:
     branches:
-      - main
-      - develop
-      - '*-autodoc'
-      - '!gh-pages'
+      - disable
+      # - main
+      # - develop
+      # - '*-autodoc'
+      # - '!gh-pages'
     tags: '*'
 
 jobs:
