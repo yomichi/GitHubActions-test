@@ -93,9 +93,9 @@ jobs:
           echo " ${{ matrix.ompsize }}"
 
       - name: macOS
-        if: ${{ runner.os == "macOS" }}
+        if: ${{ runner.os == 'macOS' }}
         run: echo "This is macOS"
 
       - name: Linux
-        if: ${{ runner.os == "Linux" }}
+        if: ${{ runner.os == 'Linux' }}
         run: echo "This is Linux"
