@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - '*'
-  schedule:
-    - cron: "0-59/10 * * * *"
+  # schedule:
+  #   - cron: "0-59/10 * * * *"
 
 jobs:
   test_skip:
@@ -62,7 +62,7 @@ jobs:
           fi
 
       - name: Inject slug/short variables
-        uses: rlespinasse/github-slug-action@v3.x
+        uses: rlespinasse/github-slug-action@v4.x
 
       - name: Print slug/short variables
         run: |
