@@ -1,9 +1,11 @@
 name: CI
 
 on:
-  # - push
-  - schedule:
-    cron: "0-59/10 * * * *"
+  push:
+    branches:
+      - '*'
+  schedule:
+    - cron: "0-59/10 * * * *"
 
 jobs:
   test_skip:
