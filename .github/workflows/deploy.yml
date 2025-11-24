@@ -50,6 +50,7 @@ jobs:
       with:
         name: docs
         path: docs/built
+        retention-days: 1
 
   deploy:
     needs: build
