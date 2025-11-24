@@ -14,7 +14,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'auto rebuilding site')"
     steps:
     - name: Inject slug/short variables
       uses: rlespinasse/github-slug-action@v3.x
@@ -40,8 +39,8 @@ jobs:
         tagname="${{ env.GITHUB_REF_SLUG }}"
         export tagname="${tagname%-autodoc}"
         echo $tagname
-        for LANG in ja en; do
-          uv run sphinx-build -b html --color docs/${LANG} docs/built/${LANG}/html
+        for lang in ja en; do
+          uv run sphinx-build -b html --color docs/${lang} docs/built/${lang}/html
         done
 
     - name: Upload
