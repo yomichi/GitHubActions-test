@@ -67,7 +67,7 @@ jobs:
 
     - name: Check downloaded docs
       run: |
-        ls -la built-docs
+        tree built-docs
 
     - name: Deploy Configuration
       run: |
@@ -90,7 +90,7 @@ jobs:
           rm -rf "gh-pages/man/${tagname}"
           mkdir -p "gh-pages/man/${tagname}"
           for LANG in ja en; do
-            cp -r ${GITHUB_WORKSPACE}/built-docs/${LANG}/_build/html "gh-pages/man/${tagname}/${LANG}"
+            cp -r ${GITHUB_WORKSPACE}/built-docs/${LANG}/html "gh-pages/man/${tagname}/${LANG}"
           done
           cd gh-pages
           git config --local user.name "${GIT_USER}"
