@@ -65,6 +65,10 @@ jobs:
         name: docs
         path: built-docs
 
+    - name: Check downloaded docs
+      run: |
+        ls -la built-docs
+
     - name: Deploy Configuration
       run: |
           mkdir ~/.ssh
