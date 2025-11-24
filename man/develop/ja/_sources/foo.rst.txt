@@ -2,3 +2,8 @@ foo
 ===
 
 bar
+
+baz
+===
+
+qux
