@@ -3,9 +3,10 @@ name: deploy
 on:
   push:
     branches:
+      - '*'
       # - disable
-      - main
-      - develop
+      # - main
+      # - develop
       # - '*-autodoc'
       # - '!gh-pages'
     tags: ['*']
@@ -44,14 +45,17 @@ jobs:
         done
 
     - name: Upload
+      if: github.ref_name == 'main' || github.ref_name == 'develop' || github.ref_type == 'tag'
       uses: actions/upload-artifact@v4
       with:
         name: docs
         path: docs/built
+        retention-days: 1
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    if: github.ref_name == 'main' || github.ref_name == 'develop' || github.ref_type == 'tag'
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -60,7 +64,7 @@ jobs:
         path: gh-pages
 
     - name: Download
-      uses: actions/download-artifact@v5
+      uses: actions/download-artifact@v4
       with:
         name: docs
         path: built-docs
