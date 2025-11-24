@@ -3,7 +3,8 @@ name: CI
 on:
   push:
     branches:
-      - '*'
+      - disable
+      # - '*'
   # schedule:
   #   - cron: "0-59/10 * * * *"
 

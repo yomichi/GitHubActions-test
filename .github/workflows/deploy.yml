@@ -31,7 +31,7 @@ jobs:
       uses: astral-sh/setup-uv@v7
 
     - name: Install python packages
-      run: uv sync --extra docs
+      run: uv sync
 
     - name: Build
       working-directory: ${{ github.workspace }}
