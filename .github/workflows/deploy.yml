@@ -69,26 +69,22 @@ jobs:
         name: docs
         path: built-docs
 
-    - name: Check downloaded docs
-      run: |
-        tree built-docs
-
     - name: Deploy Configuration
       run: |
           mkdir ~/.ssh
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          echo "${{ secrets.GHA_DEPLOY_KEY }}" > ~/.ssh/id_rsa
-          chmod 400 ~/.ssh/id_rsa
+          echo "${{ secrets.GHA_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          chmod 400 ~/.ssh/id_ed25519
 
     - name: Push
       env:
         GIT_USER: "yomichi"
         GIT_EMAIL: "yomichi@tsg.jp"
       run: |
-          is_tag=NO
-          test "_$(echo ${GITHUB_REF:-'//'} | cut -d/ -f2)" = "_tags" && is_tag=YES
-          cd ${GITHUB_WORKSPACE}
-          tagname="${{ env.GITHUB_REF_SLUG }}"
+          is_tag=${{ github.ref_type == 'tag' }}
+          # test "_$(echo ${GITHUB_REF:-'//'} | cut -d/ -f2)" = "_tags" && is_tag=YES
+          cd ${{ github.workspace }}
+          tagname=${{ github.ref_name }}
           tagname=${tagname%-autodoc}
           echo $tagname
           rm -rf "gh-pages/man/${tagname}"
